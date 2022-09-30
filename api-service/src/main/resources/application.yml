@@ -16,7 +16,7 @@ spring:
       remote-fields: user-id
       correlation-fields: user-id
   zipkin:
-    enabled: false
+    enabled: true
     baseUrl: http://localhost:9411
 
 addressClient:

@@ -1,8 +1,11 @@
-## Run
+> 主要参考文章：https://reflectoring.io/spring-boot-tracing/
 
 ### 1. Install OpenTelemetry
 
- - Download OpenTelemetry Collector from https://opentelemetry.io/docs/collector/getting-started/#windows-packaging
+ - Download OpenTelemetry Collector from
+
+   - https://opentelemetry.io/docs/collector/getting-started/#windows-packaging
+   - https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
  - Start otel-collector
 
@@ -53,13 +56,17 @@
 If you have Java 8 or higher installed, the quickest way to get started is to fetch the [latest release](https://search.maven.org/remote_content?g=io.zipkin&a=zipkin-server&v=LATEST&c=exec) as a self-contained executable jar:
 
 ```sh
+# Install
 curl -sSL https://zipkin.io/quickstart.sh | bash -s
+# Run
 java -jar zipkin.jar
 ```
 
 
 
 ### 4. Start Spring Application
+
+You can download the code from https://github.com/cainzhong/spring-cloud-sleuth-poc.
 
 1. Start `api-service` with VM options:
 
@@ -90,61 +97,59 @@ curl --location --request GET 'http://localhost:9090/customers/1'
 
 
 
+### 6. Open Jaeger or ZipKin
+
+- You can then navigate to `http://localhost:16686` to access the Jaeger UI.
+
+  ![](./images/7.png)
+
+- You can then navigate to `http://127.0.0.1:9411/` to access the ZipKin UI.
+
+  ![](./images/6.png)
+
+
+
 ## Reference
 
-1. https://spring.io/projects/spring-cloud-sleuth
-
-   
+1. 微服务追踪：Spring Cloud Sleuth
+   - https://www.jianshu.com/p/4303385b7512
+   - https://spring.io/projects/spring-cloud-sleuth
+   - https://blog.csdn.net/xibei19921101/article/details/119736123
 
 2. Not seeing traceids in the http response headers.
    - From the security perspective, it is not too safe. spring-cloud-sleuth remove it officially.
-   
-   - https://github.com/spring-cloud/spring-cloud-sleuth/issues/424
-   
-     
-   
-3. spring-cloud-sleuth及自定义日志链路traceId、spanId跟踪
-   - https://blog.csdn.net/xibei19921101/article/details/119736123
+     - https://github.com/spring-cloud/spring-cloud-sleuth/issues/424
 
-     
-   
-4. https://zipkin.io/pages/quickstart
+3. ZipKin
+   - https://zipkin.io/pages/quickstart
 
-   ```sh
-   # If you have Java 8 or higher installed, the quickest way to get started is to fetch the latest release as a self-contained executable jar:
-   
-   curl -sSL https://zipkin.io/quickstart.sh | bash -s
-   java -jar zipkin.jar
-   ```
-
-5. OpenTelemetry
+4. OpenTelemetry
 
    - Download OpenTelemetry Collector https://opentelemetry.io/docs/collector/getting-started/#windows-packaging
 
-   - otel-collector
+   - otel-collector-config.yaml
 
-      ```
-      # How to start?
-      otelcol.exe --config=./otel-collector-config.yaml
-      ```
+     - https://opentelemetry.io/docs/collector/configuration/
 
-   - otel-collector-config.yaml -> https://opentelemetry.io/docs/collector/configuration/
+   - Automatic Instrumentation
 
-     
+     - https://opentelemetry.io/docs/instrumentation/java/automatic/
+     - https://opentelemetry.io/docs/instrumentation/java/getting-started/
 
-6. Jaeger
-
+5. Jaeger
    - https://www.jaegertracing.io/docs/1.38/getting-started/
+   - OpenTelemetry SDK Autoconfigure: Jaeger exporter
+     - https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#jaeger-exporter
 
-   - Start Jaeger on Windows. Then navigate to `http://localhost:8080`
+6. Comparing Jaeger and Zipkin
+   - https://signoz.io/blog/jaeger-vs-zipkin/#:~:text=Jaeger%20can%20be%20deployed%20as,query%20service%2C%20and%20web%20UI.
 
-     ```
-     example-hotrod all
-     ```
+7. Spring Cloud Sleuth OTel Features
+   - https://spring-projects-experimental.github.io/spring-cloud-sleuth-otel/docs/current/reference/html/index.html
 
-     
+8. Easy Distributed Tracing with Spring Cloud Sleuth
+   - https://developer.okta.com/blog/2021/07/26/spring-cloud-sleuth
 
-7. Comparing Jaeger and Zipkin
-
-
+9. How to capture Spring Boot metrics with the OpenTelemetry Java Instrumentation Agent
+   - https://grafana.com/blog/2022/05/04/how-to-capture-spring-boot-metrics-with-the-opentelemetry-java-instrumentation-agent/
 
