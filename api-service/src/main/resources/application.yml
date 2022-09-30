@@ -1,0 +1,26 @@
+server.port: '9090'
+
+logging:
+  level:
+    com:
+      smax: DEBUG
+    io:
+      opentelemetry: DEBUG
+spring:
+  mvc:
+    log-request-details: 'true'
+  application:
+    name: api-service
+  sleuth:
+    baggage:
+      remote-fields: user-id
+      correlation-fields: user-id
+  zipkin:
+    enabled: false
+    baseUrl: http://localhost:9411
+
+addressClient:
+  baseUrl: http://localhost:9091
+
+customerClient:
+  baseUrl: http://localhost:9091

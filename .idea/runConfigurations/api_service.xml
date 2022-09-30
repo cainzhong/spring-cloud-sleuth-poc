@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="api-service" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" />
+    <module name="api-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.smax.Application" />
+    <option name="VM_PARAMETERS" value="-javaagent:$PROJECT_DIR$/otel-collector/opentelemetry-javaagent.jar -Dotel.service.name=api-service -Dotel.traces.exporter=jaeger -Dotel.exporter.jaeger.endpoint=http://localhost:14250 -Dotel.javaagent.debug=true" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
